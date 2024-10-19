@@ -11,8 +11,10 @@ const cookieExtractor = (req) => {
 
 const opts = {
     jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
-    secretOrKey: 'your_jwt_secret_key' // Cambia esto por una clave segura
+    secretOrKey: process.env.JWT_SECRET  // Usar variable de entorno
 };
+
+
 
 passport.use(new JwtStrategy(opts, async (jwt_payload, done) => {
     try {
